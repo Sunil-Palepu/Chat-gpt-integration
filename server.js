@@ -14,6 +14,9 @@ app.use(express.json());
 async function getResponseFromChatGPT(req, res, next) {
 
     const prompt = req.body.text
+    if (!prompt) {
+        return res.status(422).json({ success: false, error: 'Field text is required' })
+    }
 
     const apiKey = process.env.OPENAI_API_KEY;
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
@@ -33,8 +36,7 @@ async function getResponseFromChatGPT(req, res, next) {
         return res.status(200).json({ success: true, message: 'Successfully generated response', data: response.data.choices[0].message.content });
     }
     catch (error) {
-        console.error('Error:', error.response);
-        return res.status(500).json({ success: false, error: error.response })
+        return res.status(500).json({ success: false, error: error })
     }
 }
 
@@ -49,3 +51,7 @@ app.post('/generate', getResponseFromChatGPT)
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
+
+
+//this is a test comment from sunil palepu for checking
+//merge conflicts
