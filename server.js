@@ -33,8 +33,8 @@ async function getResponseFromChatGPT(req, res, next) {
         return res.status(200).json({ success: true, message: 'Successfully generated response', data: response.data.choices[0].message.content });
     }
     catch (error) {
-        console.error('Error:', error.response);
-        return res.status(500).json({ success: false, error: error.response })
+        // console.error('Error:', error.response);
+        return res.status(500).json({ success: false, error: error })
     }
 }
 
@@ -49,3 +49,5 @@ app.post('/generate', getResponseFromChatGPT)
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
+
+// ROSHAN = mesage
