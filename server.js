@@ -36,7 +36,8 @@ async function getResponseFromChatGPT(req, res, next) {
         return res.status(200).json({ success: true, message: 'Successfully generated response', data: response.data.choices[0].message.content });
     }
     catch (error) {
-        return res.status(500).json({ success: false, error: error })
+        console.error('Error:', error.response);
+        return res.status(500).json({ success: false, error: error.response })
     }
 }
 
@@ -55,3 +56,8 @@ app.listen(port, () => {
 
 //this is a test comment from sunil palepu for checking
 //merge conflicts
+
+// ROSHAN = mesage
+
+
+// message = roshan
