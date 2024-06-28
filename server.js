@@ -14,8 +14,9 @@ app.use(express.json());
 async function getResponseFromChatGPT(req, res, next) {
 
     const prompt = req.body.text
+
     if (!prompt) {
-        return res.status(422).json({ success: false, error: 'Field text is required' })
+        return res.status(422).json({ success: false, error: 'text Field is required' })
     }
 
     const apiKey = process.env.OPENAI_API_KEY;
@@ -54,10 +55,3 @@ app.listen(port, () => {
 });
 
 
-//this is a test comment from sunil palepu for checking
-//merge conflicts
-
-// ROSHAN = mesage
-
-
-// message = roshan
